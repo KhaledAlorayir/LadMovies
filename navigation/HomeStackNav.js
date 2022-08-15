@@ -12,14 +12,20 @@ const HomeStackNav = () => {
   return (
     <stack.Navigator
       screenOptions={{
-        headerTitle: "LadMovies",
         headerStyle: { backgroundColor: "black" },
         headerTitleStyle: { color: "white" },
-        headerBackTitle: "",
       }}
     >
-      <stack.Screen name="Home" component={Home} options={{}} />
-      <stack.Screen name="More" component={More} />
+      <stack.Screen
+        name="Home"
+        component={Home}
+        options={{ headerTitle: "LadMovies" }}
+      />
+      <stack.Screen
+        name="More"
+        component={More}
+        options={{ headerBackTitle: "" }}
+      />
     </stack.Navigator>
   );
 };

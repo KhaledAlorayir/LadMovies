@@ -1,8 +1,12 @@
 import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 import { getPopular, getTopRated, getUpcoming } from "./endpoints";
 
+const getNextPage = (p) =>
+  p.data.page < p.data.total_pages ? p.data.page + 1 : undefined;
+
 export const usePopular = () => {
-  return useQuery(["popular"], getPopular, {
+  return useInfiniteQuery(["popular"], getPopular, {
+    getNextPageParam: getNextPage,
     onError: (e) => {
       console.log(e);
     },
@@ -10,13 +14,8 @@ export const usePopular = () => {
 };
 
 export const useTopRated = () => {
-  /*   return useQuery(["topRated"], getTopRated, {
-    onError: (e) => {
-      console.log(e);
-    },
-  }); */
-
   return useInfiniteQuery(["topRated"], getTopRated, {
+    getNextPageParam: getNextPage,
     onError: (e) => {
       console.log(e);
     },
@@ -24,9 +23,23 @@ export const useTopRated = () => {
 };
 
 export const useUpcoming = () => {
-  return useQuery(["upcoming"], getUpcoming, {
+  return useInfiniteQuery(["upcoming"], getUpcoming, {
+    getNextPageParam: getNextPage,
     onError: (e) => {
       console.log(e);
     },
   });
+};
+
+export const useInfintie = (title) => {
+  switch (title) {
+    case "Popular":
+      return usePopular();
+    case "Upcoming":
+      return useUpcoming();
+    case "Top Rated":
+      return useTopRated();
+    default:
+      return null;
+  }
 };

@@ -18,15 +18,15 @@ const Home = () => {
   } = useUpcoming();
 
   return (
-    <ScrollView style={tw`bg-black flex-1 `}>
+    <ScrollView style={tw`bg-black flex-1`}>
       <MovieList
-        movies={popular?.data?.results}
+        movies={popular?.pages[0]?.data?.results}
         title="Popular"
         isLoading={PLoading}
         isError={PError}
       />
       <MovieList
-        movies={upcoming?.data?.results}
+        movies={upcoming?.pages[0]?.data?.results}
         title="Upcoming"
         isLoading={ULoading}
         isError={UError}

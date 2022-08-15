@@ -15,7 +15,7 @@ const MovieList = ({ movies, title, isLoading, isError }) => {
     <View style={tw`py-2 mt-4 `}>
       <View style={tw` p-2 flex-row justify-between items-center`}>
         <Text style={tw`text-lg font-semibold text-white`}>{title}</Text>
-        <Link to={{ screen: "More" }}>
+        <Link to={{ screen: "More", params: { title } }}>
           <MaterialIcons name="keyboard-arrow-right" size={32} color="white" />
         </Link>
       </View>
