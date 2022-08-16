@@ -38,6 +38,13 @@ const mainNav = () => {
           name="Search"
           component={Search}
           options={{
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: "black",
+              shadowColor: "transparent",
+            },
+            headerTitleStyle: { color: "white" },
+
             title: "",
             tabBarIcon: ({ focused }) => (
               <FontAwesome5
@@ -46,6 +53,7 @@ const mainNav = () => {
                 color={focused ? "white" : "grey"}
               />
             ),
+            tabBarLabel: "",
           }}
         />
       </Tab.Navigator>

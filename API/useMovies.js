@@ -1,5 +1,5 @@
 import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
-import { getPopular, getTopRated, getUpcoming } from "./endpoints";
+import { getPopular, getTopRated, getUpcoming, getSearch } from "./endpoints";
 
 const getNextPage = (p) =>
   p.data.page < p.data.total_pages ? p.data.page + 1 : undefined;
@@ -42,4 +42,14 @@ export const useInfintie = (title) => {
     default:
       return null;
   }
+};
+
+export const useSearch = (query) => {
+  return useInfiniteQuery(["search", query], getSearch, {
+    getNextPageParam: getNextPage,
+    onError: (e) => {
+      console.log(e);
+    },
+    enabled: !!query,
+  });
 };

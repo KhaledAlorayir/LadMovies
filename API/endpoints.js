@@ -21,3 +21,11 @@ export const getUpcoming = ({ pageParam = 1 }) => {
     baseUrl + "/upcoming" + key + `&language=en-US&page=${pageParam}&region=US`
   );
 };
+
+export const getSearch = ({ pageParam = 1, queryKey: [_, query] }) => {
+  return axios.get(
+    "https://api.themoviedb.org/3/search/movie" +
+      key +
+      `&language=en-US&page=${pageParam}&include_adult=true&query=${query}`
+  );
+};
