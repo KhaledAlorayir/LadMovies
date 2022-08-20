@@ -2,10 +2,20 @@ import React from "react";
 import { Text, View, Image, Dimensions, TouchableOpacity } from "react-native";
 import tw from "../utils/tw";
 import { getImg } from "../utils/helpers";
+import { useNavigation } from "@react-navigation/native";
 
 const MovieCard = ({ movie }) => {
+  const navigation = useNavigation();
+
   return (
-    <TouchableOpacity onPress={() => console.log("s")}>
+    <TouchableOpacity
+      onPress={() =>
+        navigation.push("MovieDetails", {
+          mid: movie.id,
+          title: movie.title,
+        })
+      }
+    >
       <View
         style={[tw`mx-4 p-1`, { width: Dimensions.get("window").width / 3 }]}
       >

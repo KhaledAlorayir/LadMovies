@@ -9,6 +9,7 @@ const Tab = createBottomTabNavigator();
 //screens & navs
 import HomeStackNav from "./HomeStackNav";
 import Search from "../screens/Search";
+import SearchStackNav from "./SearchStackNav";
 
 const mainNav = () => {
   return (
@@ -35,17 +36,9 @@ const mainNav = () => {
         />
 
         <Tab.Screen
-          name="Search"
-          component={Search}
+          name="SearchNav"
+          component={SearchStackNav}
           options={{
-            headerShown: true,
-            headerStyle: {
-              backgroundColor: "black",
-              shadowColor: "transparent",
-            },
-            headerTitleStyle: { color: "white" },
-
-            title: "",
             tabBarIcon: ({ focused }) => (
               <FontAwesome5
                 name="search"

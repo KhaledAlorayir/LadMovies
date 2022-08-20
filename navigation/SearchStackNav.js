@@ -4,12 +4,11 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 const stack = createNativeStackNavigator();
 
 //screens
-import Home from "../screens/Home";
-import More from "../screens/More";
+import Search from "../screens/Search";
 import MovieDetails from "../screens/MovieDetails";
 import PersonCredits from "../screens/PersonCredits";
 
-const HomeStackNav = () => {
+const SearchStackNav = () => {
   return (
     <stack.Navigator
       screenOptions={{
@@ -17,16 +16,7 @@ const HomeStackNav = () => {
         headerTitleStyle: { color: "white" },
       }}
     >
-      <stack.Screen
-        name="Home"
-        component={Home}
-        options={{ headerTitle: "LadMovies" }}
-      />
-      <stack.Screen
-        name="More"
-        component={More}
-        options={{ headerBackTitle: "" }}
-      />
+      <stack.Screen name="Search" component={Search} />
       <stack.Screen
         name="MovieDetails"
         component={MovieDetails}
@@ -41,4 +31,4 @@ const HomeStackNav = () => {
   );
 };
 
-export default HomeStackNav;
+export default SearchStackNav;

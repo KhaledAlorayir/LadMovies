@@ -55,7 +55,7 @@ const Search = ({ navigation }) => {
         </View>
       ) : (
         <View style={tw`h-full justify-center items-center`}>
-          <Text style={tw`text-white font-bold`}>Look up Movies!</Text>
+          <Text style={tw`text-white font-bold`}>Look up Movies! 🎥</Text>
         </View>
       )}
     </View>

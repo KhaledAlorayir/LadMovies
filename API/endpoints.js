@@ -29,3 +29,31 @@ export const getSearch = ({ pageParam = 1, queryKey: [_, query] }) => {
       `&language=en-US&page=${pageParam}&include_adult=true&query=${query}`
   );
 };
+
+export const getMovie = ({ queryKey: [_, mid] }) => {
+  return axios.get(baseUrl + "/" + mid + key + "&language=en-US");
+};
+
+export const getCredits = ({ queryKey: [_, mid] }) => {
+  return axios.get(`${baseUrl}/${mid}/credits${key}&language=en-US`);
+};
+
+export const getSimilar = ({ queryKey: [_, mid] }) => {
+  return axios.get(`${baseUrl}/${mid}/similar${key}&language=en-US&page=1`);
+};
+
+export const getPersonImgs = ({ queryKey: [_, pid] }) => {
+  return axios.get(`https://api.themoviedb.org/3/person/${pid}/images${key}`);
+};
+
+export const getPerson = ({ queryKey: [_, pid] }) => {
+  return axios.get(
+    `https://api.themoviedb.org/3/person/${pid}${key}&language=en-US`
+  );
+};
+
+export const getPersonCredits = ({ queryKey: [_, pid] }) => {
+  return axios.get(
+    `https://api.themoviedb.org/3/person/${pid}/movie_credits${key}&language=en-US`
+  );
+};
