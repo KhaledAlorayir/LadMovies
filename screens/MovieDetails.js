@@ -3,16 +3,25 @@ import { View, Text, ScrollView, Image, Dimensions } from "react-native";
 import tw from "../utils/tw";
 import { useMovie, useCredits, useSimilar } from "../API/useMovies";
 import { getFullImg } from "../utils/helpers";
+import { FontAwesome } from "@expo/vector-icons";
 
 //components
 import MovieInfo from "../components/MovieInfo";
 import LoadingScreen from "../components/LoadingScreen";
 import Cast from "../components/Cast";
 import MovieList from "../components/MovieList";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { useFavs } from "../Store";
 
 const MovieDetails = ({ navigation, route }) => {
   const { mid, title } = route.params;
-  navigation.setOptions({ title });
+  const addFav = useFavs((state) => state.addFav);
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      title,
+    });
+  }, []);
 
   const {
     data: movie,
@@ -30,6 +39,16 @@ const MovieDetails = ({ navigation, route }) => {
     isLoading: sLoading,
     isError: sError,
   } = useSimilar(mid);
+
+  React.useEffect(() => {
+    if (mSuccess) {
+      navigation.setOptions({
+        headerRight: () => (
+          <HeaderBtn onPress={() => addFav(movie)} mid={mid} />
+        ),
+      });
+    }
+  }, [mSuccess]);
 
   if (mLoading) {
     return <LoadingScreen />;
@@ -73,6 +92,21 @@ const MovieDetails = ({ navigation, route }) => {
         </>
       )}
     </ScrollView>
+  );
+};
+
+const HeaderBtn = ({ onPress, mid }) => {
+  const favs = useFavs((state) => state.favs);
+  const faviorted = favs.find((m) => m.id === mid);
+  //
+  return (
+    <TouchableOpacity onPress={onPress}>
+      {faviorted ? (
+        <FontAwesome name="heart" size={28} color="white" />
+      ) : (
+        <FontAwesome name="heart-o" size={28} color="white" />
+      )}
+    </TouchableOpacity>
   );
 };
 

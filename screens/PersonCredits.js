@@ -11,8 +11,9 @@ import MovieList from "../components/MovieList";
 const PersonCredits = ({ navigation, route }) => {
   const { name, pid, role } = route.params;
 
-  navigation.setOptions({ title: name });
-
+  React.useLayoutEffect(() => {
+    navigation.setOptions({ title: name });
+  }, []);
   const {
     data: imgs,
     isLoading: iLoading,
@@ -31,8 +32,6 @@ const PersonCredits = ({ navigation, route }) => {
     isSuccess: cSuccess,
     isError: cError,
   } = usePersonCredits(pid);
-
-  console.log(credits);
 
   return (
     <ScrollView style={tw`flex-1 bg-black`}>

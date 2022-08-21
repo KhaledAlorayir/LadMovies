@@ -6,10 +6,10 @@ import { FontAwesome5 } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
-//screens & navs
+//sub navs
 import HomeStackNav from "./HomeStackNav";
-import Search from "../screens/Search";
 import SearchStackNav from "./SearchStackNav";
+import FavStackNav from "./FavStackNav";
 
 const mainNav = () => {
   return (
@@ -42,6 +42,21 @@ const mainNav = () => {
             tabBarIcon: ({ focused }) => (
               <FontAwesome5
                 name="search"
+                size={24}
+                color={focused ? "white" : "grey"}
+              />
+            ),
+            tabBarLabel: "",
+          }}
+        />
+
+        <Tab.Screen
+          name="FavNav"
+          component={FavStackNav}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <FontAwesome5
+                name="heart"
                 size={24}
                 color={focused ? "white" : "grey"}
               />

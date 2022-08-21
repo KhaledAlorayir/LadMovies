@@ -20,7 +20,7 @@ const More = ({ navigation, route }) => {
     return <LoadingScreen />;
   }
 
-  useEffect(() => {
+  React.useLayoutEffect(() => {
     navigation.setOptions({ title });
   }, []);
 
