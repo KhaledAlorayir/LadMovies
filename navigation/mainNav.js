@@ -34,7 +34,6 @@ const mainNav = () => {
             title: "",
           }}
         />
-
         <Tab.Screen
           name="SearchNav"
           component={SearchStackNav}
@@ -49,7 +48,6 @@ const mainNav = () => {
             tabBarLabel: "",
           }}
         />
-
         <Tab.Screen
           name="FavNav"
           component={FavStackNav}

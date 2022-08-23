@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, FlatList, Button, ActivityIndicator } from "react-native";
+import { View, FlatList, ActivityIndicator } from "react-native";
 import MovieCard from "./MovieCard";
 import tw from "../utils/tw";
 

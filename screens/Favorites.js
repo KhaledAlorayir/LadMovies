@@ -4,6 +4,7 @@ import tw from "../utils/tw";
 import MovieCard from "../components/MovieCard";
 import { useFavs } from "../Store";
 import { FontAwesome5 } from "@expo/vector-icons";
+import Alert from "../components/Alert";
 
 const Favorites = ({ navigation }) => {
   const favs = useFavs((state) => state.favs);
@@ -13,26 +14,28 @@ const Favorites = ({ navigation }) => {
   }, []);
 
   return (
-    <View style={tw`bg-black pt-4 flex-1`}>
-      {favs.length > 0 ? (
-        <View style={tw`flex-1`}>
-          <FlatList
-            data={favs}
-            keyExtractor={(m) => m.id}
-            numColumns={2}
-            renderItem={({ item }) => (
-              <View style={tw`mb-4 mx-3`}>
-                <MovieCard movie={item} />
-              </View>
-            )}
-          />
-        </View>
-      ) : (
-        <View style={tw`flex-1 justify-center items-center`}>
-          <Text style={tw`text-white font-bold`}>Add some Movies! 🍿</Text>
-        </View>
-      )}
-    </View>
+    <Alert>
+      <View style={tw`bg-black pt-4 flex-1`}>
+        {favs.length > 0 ? (
+          <View style={tw`flex-1`}>
+            <FlatList
+              data={favs}
+              keyExtractor={(m) => m.id}
+              numColumns={2}
+              renderItem={({ item }) => (
+                <View style={tw`mb-4 mx-3`}>
+                  <MovieCard movie={item} />
+                </View>
+              )}
+            />
+          </View>
+        ) : (
+          <View style={tw`flex-1 justify-center items-center`}>
+            <Text style={tw`text-white font-bold`}>Add some Movies! 🍿</Text>
+          </View>
+        )}
+      </View>
+    </Alert>
   );
 };
 
