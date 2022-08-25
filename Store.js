@@ -14,7 +14,14 @@ const Favs = (set) => ({
       useAlert.getState().setAlert("movie has been added!", 1);
       return { favs: [...state.favs, movie] };
     }),
-  clearFav: () => set({ favs: [] }),
+  clearFav: () =>
+    set((state) => {
+      if (state.favs.length > 0) {
+        useAlert.getState().setAlert("cleared!", 1);
+        return { favs: [] };
+      }
+      return {};
+    }),
 });
 
 export const useFavs = create(
